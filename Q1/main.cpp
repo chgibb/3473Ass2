@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <string>
+#include <cstdlib>
 
 int main(int argc,char*argv[])
 {
@@ -9,10 +9,10 @@ int main(int argc,char*argv[])
         std::cout<<"Insufficient arguments\n";
         return 1;
     }
-    std::vector<float> nums;
+    std::vector<int> nums;
     for(int i = 1; i != argc; ++i)
     {
-        nums.push_back(std::stof(std::string(argv[i])));
+        nums.push_back(std::atoi(argv[i]));
     }
     return 0;
 }
