@@ -3,6 +3,6 @@
 
 for f in *.cpp
 do
-    g++ -c $f -Werror -Wfatal-errors
+    g++ -std=c++11 -c $f -Werror -Wfatal-errors
 done
 g++ -o q1 $(find . -type f -iname *.o -print)
