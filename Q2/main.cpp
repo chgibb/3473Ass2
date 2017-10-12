@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+#include "inc/fib.hpp"
 #include "../inc/parallelize.hpp"
 
 /**
