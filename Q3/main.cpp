@@ -2,6 +2,8 @@
 #include <vector>
 #include <cstdlib>
 
+#include "inc/sort.hpp"
+#include "inc/split.hpp"
 /**
  * @brief 
  * 
@@ -26,6 +28,23 @@ int main(int argc,char*argv[])
     {
         nums.push_back(std::atoi(argv[i]));
     }
+
+    std::vector<int>*firstHalf = nullptr;
+    std::vector<int>*secondHalf = nullptr;
+
+    ::split<std::vector<int>>(&nums,firstHalf,secondHalf);
+
+    for(auto it = firstHalf->begin(); it != firstHalf->end(); ++it)
+    {
+        std::cout<<" "<<*it;
+    }
+    std::cout<<std::endl;
+
+    for(auto it = secondHalf->begin(); it != secondHalf->end(); ++it)
+    {
+        std::cout<<" "<<*it;
+    }
+    std::cout<<std::endl;
 
     return 0;
 }
