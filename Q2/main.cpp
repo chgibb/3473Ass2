@@ -28,9 +28,16 @@ int main(int argc,char*argv[])
         return 1;
     }
     
-    std::vector<int> fibSeries;
-    ::getFibSeries<std::vector<int>&>(std::atoi(argv[1]),fibSeries);
-    for(auto it = fibSeries.begin(); it != fibSeries.end(); ++it)
+    std::vector<int>* fibSeries = new std::vector<int>();
+
+    auto fibSeriesFuture = ::launchParallel<void,int,std::vector<int>*>(
+        &::getFibSeries<std::vector<int>>,
+        std::atoi(argv[1]),
+        fibSeries
+    );
+    fibSeriesFuture.get();
+
+    for(auto it = fibSeries->begin(); it != fibSeries->end(); ++it)
     {
         std::cout<<" "<<*it;
     }
