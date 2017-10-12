@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "inc/average.hpp"
+#include "inc/smallest.hpp"
 #include "../inc/parallelize.hpp"
 
 /**
@@ -31,7 +32,9 @@ int main(int argc,char*argv[])
     }
 
     auto averageFuture = ::launchParallel<int,std::vector<int>&>(&::getAverage<int>,nums);
+    auto smallestFuture = ::launchParallel<int,std::vector<int>&>(&::getSmallest<int>,nums);
 
     std::cout<<"Average: "<<averageFuture.get()<<std::endl;
+    std::cout<<"Smallest: "<<smallestFuture.get()<<std::endl;
     return 0;
 }
