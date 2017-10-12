@@ -14,7 +14,7 @@
  * @return template <class Container> void
  */
 template <class Container>
-void split(Container*in,Container*l,Container*r)
+void split(Container*in,Container*&l,Container*&r)
 {
     size_t middle = in->size()/2;
 
