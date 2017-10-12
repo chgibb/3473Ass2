@@ -1,17 +1,16 @@
 #pragma once
-#include <vector>
 
 /**
  * @brief 
  * 
  * Returns the largest T in nums
  * 
- * @param std::vector<T>&nums
+ * @param template <class Container> nums
  * 
  * @return template <class T> T
  */
-template <class T>
-T getLargest(std::vector<T>&nums)
+template <class T,class Container>
+T getLargest(Container nums)
 {
     T res = nums[0];
     auto end = nums.end();

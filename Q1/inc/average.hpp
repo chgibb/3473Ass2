@@ -1,17 +1,16 @@
 #pragma once
-#include <vector>
 
 /**
  * @brief 
  * 
  * Returns the average of all T in nums
  * 
- * @param std::vector<T>&nums
+ * @param template <class Container> nums
  * 
  * @return template <class T> T
  */
-template <class T>
-T getAverage(std::vector<T>&nums)
+template <class T,class Container>
+T getAverage(Container nums)
 {
     T res = 0;
     auto end = nums.end();
