@@ -10,7 +10,7 @@
  * 
  * @return int
  */
-int fib(int n)
+int getFib(int n)
 {
     int a = 1;
     int b = 1;
@@ -21,4 +21,23 @@ int fib(int n)
         b = c;
     }           
     return b;
+}
+
+/**
+ * @brief 
+ * 
+ * Places the Fibonacci series up to n(inclusive) into con
+ * 
+ * @param n
+ * @param Container con
+ * 
+ * @return template <class Container> void
+ */
+template <class Container>
+void getFibSeries(int n,Container&con)
+{
+    for(int i = 0; i != n + 1; ++i)
+    {
+        con.push_back(::getFib(i));
+    }
 }
