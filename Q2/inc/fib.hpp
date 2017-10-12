@@ -29,15 +29,15 @@ int getFib(int n)
  * Places the Fibonacci series up to n(inclusive) into con
  * 
  * @param n
- * @param Container con
+ * @param Container* con
  * 
  * @return template <class Container> void
  */
 template <class Container>
-void getFibSeries(int n,Container&con)
+void getFibSeries(int n,Container*con)
 {
-    for(int i = 0; i != n + 1; ++i)
+    for(int i = 0; i != n; ++i)
     {
-        con.push_back(::getFib(i));
+        con->push_back(::getFib(i));
     }
 }
