@@ -1,6 +1,15 @@
 #pragma once
 #include <vector>
 
+/**
+ * @brief 
+ * 
+ * Returns the smallest T in nums
+ * 
+ * @param std::vector<T>&nums
+ * 
+ * @return template <class T> T
+ */
 template <class T>
 T getSmallest(std::vector<T>&nums)
 {
