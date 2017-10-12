@@ -14,20 +14,12 @@
 template <class T>
 T getAverage(std::vector<T>&nums)
 {
-    return 1;
+    T res = 0;
+    auto end = nums.end();
+    for(auto it = nums.begin(); it != end; ++it)
+    {
+        res += *it;
+    }
+    return res/nums.size();
 }
 
-/**
- * @brief 
- * 
- * Returns a packaged_task representing a parallelized version of getAverage
- * 
- * @param 
- * 
- * @return std::packaged_task<T(std::vector<T>&)>
- */
-template <class T>
-std::packaged_task<T(std::vector<T>&)> getAverageParallel()
-{
-    return std::packaged_task<T(std::vector<T>&)>(getAverage<T>);
-}
