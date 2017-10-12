@@ -32,6 +32,6 @@ int main(int argc,char*argv[])
 
     auto averageFuture = launchParallel<int,std::vector<int>&>(&getAverage<int>,nums);
 
-    std::cout<<averageFuture.get()<<std::endl;
+    std::cout<<"Average: "<<averageFuture.get()<<std::endl;
     return 0;
 }
