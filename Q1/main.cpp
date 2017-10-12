@@ -30,7 +30,7 @@ int main(int argc,char*argv[])
         nums.push_back(std::atoi(argv[i]));
     }
 
-    auto averageFuture = launchParallel<int,std::vector<int>&>(&getAverage<int>,nums);
+    auto averageFuture = ::launchParallel<int,std::vector<int>&>(&::getAverage<int>,nums);
 
     std::cout<<"Average: "<<averageFuture.get()<<std::endl;
     return 0;
