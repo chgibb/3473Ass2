@@ -32,15 +32,15 @@ int main(int argc,char*argv[])
         nums.push_back(std::atoi(argv[i]));
     }
 
-    auto averageFuture = ::launchParallel<int,std::vector<int>&>(
+    auto averageFuture = ::launchParallelRef<int,std::vector<int>&>(
         &::getAverage<int,std::vector<int>&>,
         nums
     );
-    auto largestFuture = ::launchParallel<int,std::vector<int>&>(
+    auto largestFuture = ::launchParallelRef<int,std::vector<int>&>(
         &::getLargest<int,std::vector<int>&>,
         nums
     );
-    auto smallestFuture = ::launchParallel<int,std::vector<int>&>(
+    auto smallestFuture = ::launchParallelRef<int,std::vector<int>&>(
         &::getSmallest<int,std::vector<int>&>,
         nums
     );
