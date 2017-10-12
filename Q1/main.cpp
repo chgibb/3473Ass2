@@ -1,10 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
-#include <thread>
-#include <functional>
 
 #include "inc/average.hpp"
+#include "inc/parallelize.hpp"
 
 /**
  * @brief 
@@ -30,15 +29,9 @@ int main(int argc,char*argv[])
     {
         nums.push_back(std::atoi(argv[i]));
     }
-    
-    std::future<int> averageFuture;
-    {
-        auto averageTask = getAverageParallel<int>();
-        averageFuture = averageTask.get_future();
-        std::thread(std::move(averageTask),std::ref(nums)).detach();
-    }
 
-    std::cout<<averageFuture.get();
+    auto averageFuture = launchParallel<int,std::vector<int>&>(&getAverage<int>,nums);
 
+    std::cout<<averageFuture.get()<<std::endl;
     return 0;
 }
