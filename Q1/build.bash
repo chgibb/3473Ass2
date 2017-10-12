@@ -5,4 +5,4 @@ for f in *.cpp
 do
     g++ -std=c++11 -c $f -Werror -Wfatal-errors
 done
-g++ -o q1 $(find . -type f -iname *.o -print)
+g++ -o q1 $(find . -type f -iname *.o -print) -lpthread
