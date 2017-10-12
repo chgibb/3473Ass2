@@ -30,10 +30,13 @@ int main(int argc,char*argv[])
     {
         nums.push_back(std::atoi(argv[i]));
     }
-
-    auto averageTask = getAverageParallel<int>();
-    std::future<int> averageFuture = averageTask.get_future();
-    std::thread(std::move(averageTask),std::ref(nums)).detach();
+    
+    std::future<int> averageFuture;
+    {
+        auto averageTask = getAverageParallel<int>();
+        averageFuture = averageTask.get_future();
+        std::thread(std::move(averageTask),std::ref(nums)).detach();
+    }
 
     std::cout<<averageFuture.get();
 
