@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 #include "inc/average.hpp"
-#include "inc/parallelize.hpp"
+#include "../inc/parallelize.hpp"
 
 /**
  * @brief 
