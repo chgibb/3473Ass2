@@ -34,12 +34,18 @@ int main(int argc,char*argv[])
 
     ::split<std::vector<int>>(&nums,firstHalf,secondHalf);
 
+    ::sortAscending<int,std::vector<int>>(firstHalf);
+    ::sortAscending<int,std::vector<int>>(secondHalf);
+
+    std::cout<<"First half, sorted: ";
     for(auto it = firstHalf->begin(); it != firstHalf->end(); ++it)
     {
         std::cout<<" "<<*it;
     }
+
     std::cout<<std::endl;
 
+    std::cout<<"Second half, sorted: ";
     for(auto it = secondHalf->begin(); it != secondHalf->end(); ++it)
     {
         std::cout<<" "<<*it;
