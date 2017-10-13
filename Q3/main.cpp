@@ -19,6 +19,7 @@
  */
 int main(int argc,char*argv[])
 {
+    //read a list of numbers from the CLI into nums
     if(argc <= 1)
     {
         std::cout<<"Insufficient arguments\n";
@@ -32,11 +33,13 @@ int main(int argc,char*argv[])
         nums.push_back(std::atoi(argv[i]));
     }
 
+    //pointers for the first and second halfs of nums, respectively
     std::vector<int>*firstHalf = nullptr;
     std::vector<int>*secondHalf = nullptr;
 
     ::split<std::vector<int>>(&nums,firstHalf,secondHalf);
 
+    //launch threads to sort the first and second halfs, respectively
     std::future<void> firstHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
         &::sortAscending<int,std::vector<int>>,
         firstHalf
@@ -45,9 +48,12 @@ int main(int argc,char*argv[])
         &::sortAscending<int,std::vector<int>>,
         secondHalf
     );
+
+    //wait for both to finish
     firstHalfSortFuture.get();
     secondHalfSortFuture.get();
 
+    //launch merging thread
     std::future<std::vector<int>> mergeFuture = ::launchParallelRef<std::vector<int>,std::vector<int>*&,std::vector<int>*&>(
         &::merge<std::vector<int>>,
         firstHalf,
@@ -69,6 +75,7 @@ int main(int argc,char*argv[])
     }
     std::cout<<std::endl;
 
+    //get merged results
     nums = mergeFuture.get();
 
     std::cout<<"Both merged: ";

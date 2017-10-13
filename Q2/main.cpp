@@ -18,6 +18,7 @@
  */
 int main(int argc,char*argv[])
 {
+    //read a single number off the CLI
     if(argc < 2)
     {
         std::cout<<"Insufficient arguments\n";
@@ -29,13 +30,17 @@ int main(int argc,char*argv[])
         return 1;
     }
     
+    //pointer to hold the fibonnaci series up to the number passed on the CLI
     std::vector<int>* fibSeries = new std::vector<int>();
 
+    //launch thread to get fibonnaci series
     std::future<void> fibSeriesFuture = ::launchParallel<void,int,std::vector<int>*>(
         &::getFibSeries<std::vector<int>>,
         std::atoi(argv[1]),
         fibSeries
     );
+
+    //wait for results
     fibSeriesFuture.get();
 
     for(auto it = fibSeries->begin(); it != fibSeries->end(); ++it)
