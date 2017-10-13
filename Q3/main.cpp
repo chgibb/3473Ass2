@@ -5,6 +5,7 @@
 #include "inc/sort.hpp"
 #include "inc/split.hpp"
 #include "inc/merge.hpp"
+#include "../inc/parallelize.hpp"
 /**
  * @brief 
  * 
@@ -35,8 +36,22 @@ int main(int argc,char*argv[])
 
     ::split<std::vector<int>>(&nums,firstHalf,secondHalf);
 
-    ::sortAscending<int,std::vector<int>>(firstHalf);
-    ::sortAscending<int,std::vector<int>>(secondHalf);
+    auto firstHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
+        &::sortAscending<int,std::vector<int>>,
+        firstHalf
+    );
+    auto secondHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
+        &::sortAscending<int,std::vector<int>>,
+        secondHalf
+    );
+    firstHalfSortFuture.get();
+    secondHalfSortFuture.get();
+
+    auto mergeFuture = ::launchParallelRef<std::vector<int>,std::vector<int>*&,std::vector<int>*&>(
+        &::merge<std::vector<int>>,
+        firstHalf,
+        secondHalf
+    );
 
     std::cout<<"First half, sorted: ";
     for(auto it = firstHalf->begin(); it != firstHalf->end(); ++it)
@@ -53,7 +68,7 @@ int main(int argc,char*argv[])
     }
     std::cout<<std::endl;
 
-    nums = ::merge<std::vector<int>>(firstHalf,secondHalf);
+    nums = mergeFuture.get();
 
     std::cout<<"Both merged: ";
     for(auto it = nums.begin(); it != nums.end(); ++it)
