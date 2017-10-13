@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <future>
 #include <cstdlib>
 
 #include "inc/average.hpp"
@@ -32,15 +33,15 @@ int main(int argc,char*argv[])
         nums.push_back(std::atoi(argv[i]));
     }
 
-    auto averageFuture = ::launchParallelRef<int,std::vector<int>&>(
+    std::future<int> averageFuture = ::launchParallelRef<int,std::vector<int>&>(
         &::getAverage<int,std::vector<int>&>,
         nums
     );
-    auto largestFuture = ::launchParallelRef<int,std::vector<int>&>(
+    std::future<int>  largestFuture = ::launchParallelRef<int,std::vector<int>&>(
         &::getLargest<int,std::vector<int>&>,
         nums
     );
-    auto smallestFuture = ::launchParallelRef<int,std::vector<int>&>(
+    std::future<int>  smallestFuture = ::launchParallelRef<int,std::vector<int>&>(
         &::getSmallest<int,std::vector<int>&>,
         nums
     );

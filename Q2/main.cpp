@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <future>
 #include <cstdlib>
 
 #include "inc/fib.hpp"
@@ -30,7 +31,7 @@ int main(int argc,char*argv[])
     
     std::vector<int>* fibSeries = new std::vector<int>();
 
-    auto fibSeriesFuture = ::launchParallel<void,int,std::vector<int>*>(
+    std::future<void> fibSeriesFuture = ::launchParallel<void,int,std::vector<int>*>(
         &::getFibSeries<std::vector<int>>,
         std::atoi(argv[1]),
         fibSeries

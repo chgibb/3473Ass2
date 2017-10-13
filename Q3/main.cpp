@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <future>
 #include <cstdlib>
 
 #include "inc/sort.hpp"
@@ -36,18 +37,18 @@ int main(int argc,char*argv[])
 
     ::split<std::vector<int>>(&nums,firstHalf,secondHalf);
 
-    auto firstHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
+    std::future<void> firstHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
         &::sortAscending<int,std::vector<int>>,
         firstHalf
     );
-    auto secondHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
+    std::future<void> secondHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
         &::sortAscending<int,std::vector<int>>,
         secondHalf
     );
     firstHalfSortFuture.get();
     secondHalfSortFuture.get();
 
-    auto mergeFuture = ::launchParallelRef<std::vector<int>,std::vector<int>*&,std::vector<int>*&>(
+    std::future<std::vector<int>> mergeFuture = ::launchParallelRef<std::vector<int>,std::vector<int>*&,std::vector<int>*&>(
         &::merge<std::vector<int>>,
         firstHalf,
         secondHalf
