@@ -4,6 +4,7 @@
 
 #include "inc/sort.hpp"
 #include "inc/split.hpp"
+#include "inc/merge.hpp"
 /**
  * @brief 
  * 
@@ -47,6 +48,15 @@ int main(int argc,char*argv[])
 
     std::cout<<"Second half, sorted: ";
     for(auto it = secondHalf->begin(); it != secondHalf->end(); ++it)
+    {
+        std::cout<<" "<<*it;
+    }
+    std::cout<<std::endl;
+
+    nums = ::merge<std::vector<int>>(firstHalf,secondHalf);
+
+    std::cout<<"Both merged: ";
+    for(auto it = nums.begin(); it != nums.end(); ++it)
     {
         std::cout<<" "<<*it;
     }
