@@ -4,7 +4,7 @@
  * @brief 
  * 
  * Returns a new Container containing the copied contents
- * of con1 and con2
+ * of con1 and con2. Container is the container type
  * 
  * @param Container*&con1
  * @param Container*&con2

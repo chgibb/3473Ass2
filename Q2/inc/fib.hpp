@@ -26,7 +26,8 @@ int getFib(int n)
 /**
  * @brief 
  * 
- * Places the Fibonacci series up to n(inclusive) into con
+ * Places the Fibonacci series up to n(inclusive) into con.
+ * Container is the container type
  * 
  * @param n
  * @param Container* con

@@ -7,7 +7,8 @@
  * @brief 
  * 
  * Run the function func on a new thread, passing args by reference. Returns a future for
- * func's execution
+ * func's execution. Ret is the return type of the function to launch and Args is the
+ * type of each parameter to pass in the order they are passed
  * 
  * @param Ret(*func)(Args...)
  * @param Args...args
@@ -31,7 +32,8 @@ std::future<Ret> launchParallelRef(Ret(*func)(Args...),Args...args)
  * @brief 
  * 
  * Run the function func on a new thread, passing args. Returns a future for
- * func's execution
+ * func's execution. Ret is the return type of the function to launch and Args is the
+ * type of each parameter to pass in the order they are passed
  * 
  * @param Ret(*func)(Args...)
  * @param Args...args

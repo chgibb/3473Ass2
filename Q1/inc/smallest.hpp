@@ -3,7 +3,8 @@
 /**
  * @brief 
  * 
- * Returns the smallest T in nums
+ * Returns the smallest T in nums. Container is the container type of nums
+ * and T is the contained type
  * 
  * @param template <class Container> nums
  * 

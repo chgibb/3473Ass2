@@ -4,7 +4,8 @@
 /**
  * @brief 
  * 
- * Sorts con in ascending order
+ * Sorts con in ascending order. Container is the container type of con
+ * and T is the type contained
  * 
  * @param Container*&con
  * 
