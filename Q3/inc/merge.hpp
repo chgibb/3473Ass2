@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+ * @brief 
+ * 
+ * Returns a new Container containing the copied contents
+ * of con1 and con2
+ * 
+ * @param Container*&con1
+ * @param Container*&con2
+ * 
+ * @return template <class Container> Container
+ */
 template <class Container>
 Container merge(Container*&con1,Container*&con2)
 {
