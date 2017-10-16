@@ -57,3 +57,4 @@ int main(int argc,char*argv[])
     std::cout<<"Largest: "<<largestFuture.get()<<std::endl;
     std::cout<<"Smallest: "<<smallestFuture.get()<<std::endl;
     return 0;
+}
