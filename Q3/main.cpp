@@ -7,6 +7,7 @@
 #include "inc/split.hpp"
 #include "inc/merge.hpp"
 #include "../inc/parallelize.hpp"
+
 /**
  * @brief 
  * 
@@ -40,13 +41,21 @@ int main(int argc,char*argv[])
     ::split<std::vector<int>>(&nums,firstHalf,secondHalf);
 
     //launch threads to sort the first and second halfs, respectively
-    std::future<void> firstHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
-        &::sortAscending<int,std::vector<int>>,
-        firstHalf
+    std::future<void> firstHalfSortFuture = ::launchParallelRef<
+        void,std::vector<int>*&,int,std::vector<int>::size_type
+    >(
+        &::quickSort<int,std::vector<int>>,
+        firstHalf,
+        0,
+        firstHalf->size()
     );
-    std::future<void> secondHalfSortFuture = ::launchParallelRef<void,std::vector<int>*&>(
-        &::sortAscending<int,std::vector<int>>,
-        secondHalf
+    std::future<void> secondHalfSortFuture = ::launchParallelRef<
+        void,std::vector<int>*&,int,std::vector<int>::size_type
+    >(
+        &::quickSort<int,std::vector<int>>,
+        secondHalf,
+        0,
+        secondHalf->size()
     );
 
     //wait for both to finish
@@ -54,7 +63,9 @@ int main(int argc,char*argv[])
     secondHalfSortFuture.get();
 
     //launch merging thread
-    std::future<std::vector<int>> mergeFuture = ::launchParallelRef<std::vector<int>,std::vector<int>*&,std::vector<int>*&>(
+    std::future<std::vector<int>> mergeFuture = ::launchParallelRef<
+        std::vector<int>,std::vector<int>*&,std::vector<int>*&
+    >(
         &::merge<std::vector<int>>,
         firstHalf,
         secondHalf
