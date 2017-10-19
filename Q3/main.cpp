@@ -1,3 +1,7 @@
+
+/*
+    The program will take in a list of numbers from the command line, sort and print them using threads.
+*/
 #include <iostream>
 #include <vector>
 #include <future>

@@ -1,3 +1,6 @@
+/*
+    The program will take in a list of numbers from the command line and print the average, largest, and smallest using threads.
+*/
 #include <iostream>
 #include <vector>
 #include <future>

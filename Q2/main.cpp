@@ -1,3 +1,6 @@
+/*
+    The program will take in a number from the command line and print the Fibonacci series up to that number using threads.
+*/
 #include <iostream>
 #include <vector>
 #include <future>
